@@ -516,7 +516,7 @@ type FileReader struct {
 // InlineConfig contains information on making an InlineQuery response.
 type InlineConfig struct {
 	InlineQueryID string              `json:"inline_query_id"`
-	Results       []InlineQueryResult `json:"results"`
+	Results       []IQResultInterface `json:"results"`
 	CacheTime     int                 `json:"cache_time"`
 	IsPersonal    bool                `json:"is_personal"`
 	NextOffset    string              `json:"next_offset"`

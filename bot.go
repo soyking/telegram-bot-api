@@ -479,6 +479,10 @@ func (bot *BotAPI) AnswerInlineQuery(config InlineConfig) (APIResponse, error) {
 	v.Add("cache_time", strconv.Itoa(config.CacheTime))
 	v.Add("is_personal", strconv.FormatBool(config.IsPersonal))
 	v.Add("next_offset", config.NextOffset)
+
+	for i := range config.Results {
+		config.Results[i].EnsureType()
+	}
 	data, err := json.Marshal(config.Results)
 	if err != nil {
 		return APIResponse{}, err

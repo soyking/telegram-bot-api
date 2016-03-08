@@ -283,6 +283,11 @@ type InlineQuery struct {
 	Offset string `json:"offset"`
 }
 
+// InlineQueryResult interface
+type IQResultInterface interface {
+	EnsureType()
+}
+
 // InlineQueryResult is the base type that all InlineQuery Results have.
 type InlineQueryResult struct {
 	Type string `json:"type"` // required
@@ -304,6 +309,10 @@ type InlineQueryResultArticle struct {
 	ThumbHeight           int    `json:"thumb_height"`
 }
 
+func (i *InlineQueryResultArticle) EnsureType() {
+	i.Type = "article"
+}
+
 // InlineQueryResultPhoto is an inline query response photo.
 type InlineQueryResultPhoto struct {
 	InlineQueryResult
@@ -320,6 +329,10 @@ type InlineQueryResultPhoto struct {
 	DisableWebPagePreview bool   `json:"disable_web_page_preview"`
 }
 
+func (i *InlineQueryResultPhoto) EnsureType() {
+	i.Type = "photo"
+}
+
 // InlineQueryResultGIF is an inline query response GIF.
 type InlineQueryResultGIF struct {
 	InlineQueryResult
@@ -332,6 +345,10 @@ type InlineQueryResultGIF struct {
 	MessageText           string `json:"message_text"`
 	ParseMode             string `json:"parse_mode"`
 	DisableWebPagePreview bool   `json:"disable_web_page_preview"`
+}
+
+func (i *InlineQueryResultGIF) EnsureType() {
+	i.Type = "gif"
 }
 
 // InlineQueryResultMPEG4GIF is an inline query response MPEG4 GIF.
@@ -348,6 +365,10 @@ type InlineQueryResultMPEG4GIF struct {
 	DisableWebPagePreview bool   `json:"disable_web_page_preview"`
 }
 
+func (i *InlineQueryResultMPEG4GIF) EnsureType() {
+	i.Type = "mpeg4_gif"
+}
+
 // InlineQueryResultVideo is an inline query response video.
 type InlineQueryResultVideo struct {
 	InlineQueryResult
@@ -361,6 +382,10 @@ type InlineQueryResultVideo struct {
 	ThumbURL              string `json:"thumb_url"`
 	Title                 string `json:"title"`
 	Description           string `json:"description"`
+}
+
+func (i *InlineQueryResultVideo) EnsureType() {
+	i.Type = "video"
 }
 
 // ChosenInlineResult is an inline query result chosen by a User
